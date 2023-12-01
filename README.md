@@ -1,2 +1,2 @@
-# Movie-recommendation-system
-A content based reccomendation system made for the completion of internship.
+# Movie-Recommendation-System
+A content-based recommendation system was made for the completion of the internship.
