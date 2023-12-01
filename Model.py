@@ -3,6 +3,7 @@ import numpy as np
 import ast
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import pickle
 
 
 # Importing datasets(movies & credits) and creating dataframes. 
@@ -90,6 +91,8 @@ vectors = cv.fit_transform(movies_list['tags']).toarray()
 # Calculating similarity value of vectors using cosine_similarity and storing it in a variable.
 similarities = cosine_similarity(vectors)
 
+movies_list[movies_list['title'] == 'The Lego Movie'].index[0]
+
 # Creating function that will sort and print the 10 mmost similar movies.
 def recommend(movie):
     index = movies_list[movies_list['title'] == movie].index[0]
@@ -97,9 +100,14 @@ def recommend(movie):
     for i in distances[1:11]:
         print(movies_list.iloc[i[0]].title)
         
-movie_name=input('Enter official title of a movie: ')
+# movie_name=input('Enter official title of a movie: ')
 
-if movie_name in movies_list['title'].values:
-    recommend(movie_name)
-else:
-    print('The title name is not available in the database, check the title name.')
+# if movie_name in movies_list['title'].values:
+#     recommend(movie_name)
+# else:
+#     print('The title name is not available in the database, check the title name.')
+
+recommend("Iron Man")
+
+pickle.dump(movies_list,open('movie_list.pkl','wb'))
+pickle.dump(similarities,open('similarity.pkl','wb'))
